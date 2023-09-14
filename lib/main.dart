@@ -8,8 +8,8 @@ void main(List<String> args) {
     SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.white70,
       systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Color.fromARGB(255, 87, 35, 220),
+      statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.light,
     ),
   );
@@ -32,277 +32,202 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
   });
+  final userName = 'Adam';
+  final petName = 'Oreo';
+  final numberOfRecords = 3;
+  final numberOfReminders = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Shizuku",
-        ),
-        actions: [
-          Icon(
-            Icons.settings,
+          "Hi $userName!",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w900,
           ),
-          PopupMenuButton(
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  value: 0,
-                  child: Text("My Account"),
-                ),
-                PopupMenuItem(
-                  value: 1,
-                  child: Text("Settings"),
-                ),
-                PopupMenuItem(
-                  value: 2,
-                  child: Text("Logout"),
-                ),
-              ];
-            },
-          )
-        ],
+        ),
         elevation: 0,
         bottomOpacity: 0,
         foregroundColor: Colors.black87,
         backgroundColor: Colors.white70,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 15,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white70,
-          ),
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 15),
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 232, 227, 249),
-                    borderRadius: BorderRadius.circular(28)),
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 20),
-                      padding: EdgeInsets.all(7),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 209, 196, 251),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Icon(
-                        Icons.error_outline_outlined,
-                        size: 25,
-                        weight: 500,
-                      ),
-                    ),
-                    Text(
-                      "Shizuku is not running",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
+      body: Container(
+        color: Colors.white70,
+        padding: EdgeInsets.symmetric(horizontal: 18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Pet profile box
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.all(20),
+              height: MediaQuery.of(context).size.height * 0.25,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 1,
+                    offset: Offset(0, 2),
+                    spreadRadius: 0.5,
+                  ),
+                ],
               ),
-              Container(
-                margin: EdgeInsets.only(top: 8),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 232, 227, 249),
-                    borderRadius: BorderRadius.circular(28)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+              child: Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 150,
+                    width: 150,
+                    child: Image.asset('assets/Pomerian_DgB.jpg'),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 20),
-                          padding: EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 209, 196, 251),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Icon(
-                            Icons.wifi,
-                            weight: 500,
+                        Text(
+                          petName,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
-                          "Start via Wireless debugging",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                        // Records box
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 204, 189, 254),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.folder_outlined,
+                                size: 25,
+                                color: Color.fromARGB(255, 87, 35, 220),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                '$numberOfRecords records',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 87, 35, 220),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Reminders box
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 204, 189, 254),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.notifications_outlined,
+                                size: 25,
+                                color: Color.fromARGB(255, 87, 35, 220),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                '$numberOfReminders reminders',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 87, 35, 220),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                              Colors.orange.shade700,
+                            ),
+                            padding: MaterialStatePropertyAll(
+                              EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 18),
+                            ),
+                            shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                            ),
+                          ),
+                          onPressed: () {},
+                          icon: Icon(Icons.add),
+                          label: Text(
+                            'Add record',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 18),
-                      child: Text(
-                        "On Android 11 or above, you can enable Wireless debugging and start Shizuku directly from your device, without connecting to a computer.",
-                        style: TextStyle(),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 18),
-                      child: Text(
-                        "Please view the step-by-step guide first.",
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 18),
-                      child: FilledButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                            Color.fromARGB(255, 81, 55, 176),
-                          ),
-                          padding: MaterialStatePropertyAll<EdgeInsets>(
-                            EdgeInsets.symmetric(horizontal: 20),
-                          ),
-                        ),
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.web_stories_outlined,
-                          size: 20,
-                        ),
-                        label: Text("Step-by-step guide"),
-                      ),
-                    ),
-                    FilledButton.icon(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll<Color>(
-                          Color.fromARGB(255, 81, 55, 176),
-                        ),
-                        padding: MaterialStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 20),
-                        ),
-                      ),
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.join_inner,
-                        size: 20,
-                      ),
-                      label: Text("Pairing"),
-                    ),
-                    FilledButton.icon(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll<Color>(
-                          Color.fromARGB(255, 81, 55, 176),
-                        ),
-                        padding: MaterialStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 20),
-                        ),
-                      ),
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.play_arrow,
-                        size: 20,
-                      ),
-                      label: Text("Start"),
-                    ),
-                    // ElevatedButton.icon(
-                    //   style: ButtonStyle(
-                    //       backgroundColor: MaterialStatePropertyAll<Color>(
-                    //         Color.fromARGB(255, 81, 55, 176),
-                    //       ),
-                    //       shape: MaterialStateOutlinedBorder),
-                    //   onPressed: () {},
-                    //   icon: Icon(
-                    //     Icons.web_stories_outlined,
-                    //   ),
-                    //   label: Text("Step-by-step guide"),
-                    // ),
-                  ],
+                  )
+                ],
+              ),
+            ),
+            TextButton.icon(
+              style: ButtonStyle(
+                padding: MaterialStatePropertyAll(
+                  EdgeInsets.all(0),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 8),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 232, 227, 249),
-                    borderRadius: BorderRadius.circular(28)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 20),
-                          padding: EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 209, 196, 251),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Icon(
-                            Icons.android,
-                            weight: 500,
-                          ),
-                        ),
-                        Text(
-                          "Start by connecting to a computer",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 18),
-                      child: RichText(
-                        textScaleFactor: 1.09,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text:
-                                  "For devices without root, you need to use adb to start Shizuku (requires computer connection). This process needs to be repeated every time the device is restarted. Please ",
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                            TextSpan(
-                              text: "read the help.",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 81, 55, 176),
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 18),
-                      child: FilledButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                            Color.fromARGB(255, 81, 55, 176),
-                          ),
-                          padding: MaterialStatePropertyAll<EdgeInsets>(
-                            EdgeInsets.symmetric(horizontal: 25),
-                          ),
-                        ),
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.terminal_sharp,
-                          size: 20,
-                        ),
-                        label: Text("View command"),
-                      ),
-                    ),
-                  ],
+              onPressed: () {},
+              icon: Icon(
+                Icons.add,
+                size: 20,
+                color: Color.fromARGB(255, 87, 35, 220),
+              ),
+              label: Text(
+                'Add pet',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 87, 35, 220),
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color.fromARGB(255, 87, 35, 220),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.pets,
+              size: 30,
+            ),
+            label: 'Pet cards',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings_outlined,
+              size: 30,
+            ),
+            label: 'Settings',
+          ),
+        ],
       ),
     );
   }
