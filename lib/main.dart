@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:practice_app/Views/Home_view.dart';
 
 void main(List<String> args) {
   SystemChrome.setSystemUIOverlayStyle(
@@ -10,7 +11,7 @@ void main(List<String> args) {
       systemNavigationBarIconBrightness: Brightness.dark,
       statusBarColor: Color.fromARGB(255, 87, 35, 220),
       statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
     ),
   );
   runApp(TestApp());
@@ -32,184 +33,11 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
   });
-  final userName = 'Adam';
-  final petName = 'Oreo';
-  final numberOfRecords = 3;
-  final numberOfReminders = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Hi $userName!",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-        elevation: 0,
-        bottomOpacity: 0,
-        foregroundColor: Colors.black87,
-        backgroundColor: Colors.white70,
-      ),
-      body: Container(
-        color: Colors.white70,
-        padding: EdgeInsets.symmetric(horizontal: 18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Pet profile box
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              padding: EdgeInsets.all(20),
-              height: MediaQuery.of(context).size.height * 0.25,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade300,
-                    blurRadius: 1,
-                    offset: Offset(0, 2),
-                    spreadRadius: 0.5,
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 150,
-                    width: 150,
-                    child: Image.asset('assets/Pomerian_DgB.jpg'),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          petName,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        // Records box
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 204, 189, 254),
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(
-                                Icons.folder_outlined,
-                                size: 25,
-                                color: Color.fromARGB(255, 87, 35, 220),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '$numberOfRecords records',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 87, 35, 220),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Reminders box
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 204, 189, 254),
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(
-                                Icons.notifications_outlined,
-                                size: 25,
-                                color: Color.fromARGB(255, 87, 35, 220),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '$numberOfReminders reminders',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 87, 35, 220),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        ElevatedButton.icon(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                              Colors.orange.shade700,
-                            ),
-                            padding: MaterialStatePropertyAll(
-                              EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 18),
-                            ),
-                            shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                            ),
-                          ),
-                          onPressed: () {},
-                          icon: Icon(Icons.add),
-                          label: Text(
-                            'Add record',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            TextButton.icon(
-              style: ButtonStyle(
-                padding: MaterialStatePropertyAll(
-                  EdgeInsets.all(0),
-                ),
-              ),
-              onPressed: () {},
-              icon: Icon(
-                Icons.add,
-                size: 20,
-                color: Color.fromARGB(255, 87, 35, 220),
-              ),
-              label: Text(
-                'Add pet',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 87, 35, 220),
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: HomeView(),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Color.fromARGB(255, 87, 35, 220),
         items: [
